@@ -1,0 +1,67 @@
+CREATE TABLE Departments (
+    DepartmentID INT PRIMARY KEY AUTO_INCREMENT,
+    DepartmentName VARCHAR(100) NOT NULL,
+    ManagerID INT
+);
+
+CREATE TABLE Jobs (
+    JobID INT PRIMARY KEY AUTO_INCREMENT,
+    JobTitle VARCHAR(100) NOT NULL,
+    Salary DECIMAL(10,2) NOT NULL,
+    OvertimeRate DECIMAL(5,2) NOT NULL
+);
+
+CREATE TABLE Employees (
+    EmployeeID INT PRIMARY KEY AUTO_INCREMENT,
+    FirstName VARCHAR(50) NOT NULL,
+    LastName VARCHAR(50) NOT NULL,
+    Email VARCHAR(100) UNIQUE,
+    Phone VARCHAR(15),
+    Address TEXT,
+    DateOfBirth DATE,
+    HireDate DATE NOT NULL,
+    JobID INT,
+    DepartmentID INT,
+    FOREIGN KEY (JobID) REFERENCES Jobs(JobID),
+    FOREIGN KEY (DepartmentID) REFERENCES Departments(DepartmentID)
+);
+
+CREATE TABLE Payroll (
+    PayrollID INT PRIMARY KEY AUTO_INCREMENT,
+    EmployeeID INT,
+    BaseSalary DECIMAL(10,2) NOT NULL,
+    HoursWorked INT NOT NULL,
+    OvertimeHours INT DEFAULT 0,
+    Deductions DECIMAL(10,2) DEFAULT 0,
+    NetPay DECIMAL(10,2) NOT NULL,
+    PaymentDate DATE NOT NULL,
+    FOREIGN KEY (EmployeeID) REFERENCES Employees(EmployeeID)
+);
+
+CREATE TABLE Schedules (
+    ScheduleID INT PRIMARY KEY AUTO_INCREMENT,
+    EmployeeID INT,
+    ShiftStart TIME NOT NULL,
+    ShiftEnd TIME NOT NULL,
+    WorkDays VARCHAR(50),
+    FOREIGN KEY (EmployeeID) REFERENCES Employees(EmployeeID)
+);
+
+CREATE TABLE Attendance (
+    AttendanceID INT PRIMARY KEY AUTO_INCREMENT,
+    EmployeeID INT,
+    Date DATE NOT NULL,
+    CheckInTime TIME NOT NULL,
+    CheckOutTime TIME,
+    TotalHoursWorked DECIMAL(5,2),
+    FOREIGN KEY (EmployeeID) REFERENCES Employees(EmployeeID)
+);
+
+CREATE TABLE Vacations (
+    VacationID INT PRIMARY KEY AUTO_INCREMENT,
+    EmployeeID INT,
+    StartDate DATE NOT NULL,
+    EndDate DATE NOT NULL,
+    Status ENUM('Pending', 'Approved', 'Rejected') DEFAULT 'Pending',
+    FOREIGN KEY (EmployeeID) REFERENCES Employees(EmployeeID)
+);
