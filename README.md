@@ -40,10 +40,10 @@ The system consists of **seven key tables**:
 
 ##  SQL Schema & Queries
 The database is structured using **SQL DDL (Data Definition Language)** to create tables and relationships. **DML (Data Manipulation Language)** is used to insert, update, and retrieve records. Some key queries include:  
-✅ Retrieve all employees with job titles and departments.  
-✅ Identify employees who worked overtime.  
-✅ Calculate total salary, including overtime pay.  
-✅ Track pending vacation requests.  
+ Retrieve all employees with job titles and departments.  
+ Identify employees who worked overtime.  
+ Calculate total salary, including overtime pay.  
+ Track pending vacation requests.  
 
 
 
