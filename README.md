@@ -35,7 +35,6 @@ The system consists of **seven key tables**:
 6️ **Attendance** – Records employee check-ins, check-outs, and total hours.  
 7️ **Vacations** – Manages employee leave requests and approvals.  
 
- **ER Diagram:** (Refer to the `er_diagram.png` file in this repo)  
 
 
 ##  SQL Schema & Queries
